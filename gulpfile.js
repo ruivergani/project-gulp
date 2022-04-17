@@ -6,11 +6,16 @@ const autoprefixer = require('gulp-autoprefixer');
 function compilaSass(){
     return gulp.src('scss/*.scss') // get all files from folder scss
     .pipe(sass({outputStyle : 'compressed'})) //minified css
-    .pipe(autoprefixer({
-        overrideBrowserlist: ['last 2 versions'], // code will work up to 2 last versions browsers
-        cascade: false
-    })) // generate all autoprefixer that exists
-    .pipe(gulp.dest('css/')) //destination
+    .pipe(autoprefixer({ // create autoprefixer
+        overrideBrowserslist: ['last 2 versions'],
+        cascade: false,
+    })) 
+    .pipe(gulp.dest('css/')) // destination folder
+}
+function watch(){
+    gulp.watch('scss/*.scss', compilaSass); // gulp.series('name-of-task') or use parrallel
 }
 
 gulp.task('default', compilaSass); // executing the sass (name) give name to task
+gulp.task('default', watch);
+
