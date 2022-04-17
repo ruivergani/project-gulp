@@ -6,6 +6,7 @@
   "author": "Rui Vergani Neto",
   "license": "MIT",
   "dependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0"
   }
 }
