@@ -1,0 +1,11 @@
+{
+  "name": "codeboost-gulp",
+  "version": "1.0.0",
+  "description": "Project created for codeboost",
+  "main": "index.js",
+  "author": "Rui Vergani Neto",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
