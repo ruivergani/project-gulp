@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
+const browserSync = require('browser-sync').create(); // create local server
+
 
 // Create functions
 function compilaSass(){
@@ -12,10 +14,18 @@ function compilaSass(){
     })) 
     .pipe(gulp.dest('css/')) // destination folder
 }
+gulp.task('default', compilaSass); // task (need a name)  default for all execute
+
+function browser(){
+    browserSync.init({
+        server: {
+            baseDir: './'
+        }
+    })
+}
+gulp.task('default', browser);
+
 function watch(){
     gulp.watch('scss/*.scss', compilaSass); // gulp.series('name-of-task') or use parrallel
 }
-
-gulp.task('default', compilaSass); // executing the sass (name) give name to task
 gulp.task('default', watch);
-
