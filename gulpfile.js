@@ -23,6 +23,9 @@ gulp.task('sass', compilaSass); // task (need a name)  default for all execute
 function gulpJS(){
     return gulp.src('js/scripts/*.js')
     .pipe(concat('all.js')) // put all files in the scripts folder to one single file
+    .pipe(babel({ // compile modern JS
+        presets: ['@babel/env']
+    }))
     .pipe(gulp.dest('js/'))
 }
 gulp.task('allJS', gulpJS);

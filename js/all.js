@@ -1,7 +1,8 @@
-{
-    console.log('buttons');
-}
+"use strict";
 
 {
-    console.log('modal');
+  var number = 32;
+}
+{
+  console.log('modal');
 }
