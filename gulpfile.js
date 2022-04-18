@@ -6,7 +6,6 @@ const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 
-
 // Compile Sass Function
 function compilaSass(){
     return gulp.src('scss/*.scss') // get all files from folder scss
@@ -33,6 +32,15 @@ function gulpJS(){
 }
 gulp.task('allJS', gulpJS);
 
+function pluginsJS(){
+    return gulp
+    .src(['./js/lib/aos.min.js', './js/lib/swiper.min.js']) // name of files
+    .pipe(concat('plugins.js')) // all these files will be going into plugins.js
+    .pipe(gulp.dest('js/'))
+    .pipe(browserSync.stream())
+}
+gulp.task('pluginjs', pluginsJS);
+
 // Browser Function
 function browser(){
     browserSync.init({
@@ -48,8 +56,9 @@ function watch(){
     gulp.watch('scss/*.scss', compilaSass); // gulp.series('name-of-task') or use parrallel
     gulp.watch('*.html').on('change', browserSync.reload); // refresh html when changes made
     gulp.watch('js/scripts/*.js', gulpJS);
+    gulp.watch('js/lib/*.js', pluginsJS);
 }
 gulp.task('watch', watch);
 
 // Gulp default
-gulp.task('default', gulp.parallel('watch', 'browser-sync', 'sass', 'allJS'));
+gulp.task('default', gulp.parallel('watch', 'browser-sync', 'sass', 'allJS', 'pluginjs'));
