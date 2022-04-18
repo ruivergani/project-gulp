@@ -4,6 +4,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync').create(); // create local server
 const concat = require('gulp-concat');
 const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 
 
 // Compile Sass Function
@@ -26,6 +27,7 @@ function gulpJS(){
     .pipe(babel({ // compile modern JS
         presets: ['@babel/env']
     }))
+    .pipe(uglify())
     .pipe(gulp.dest('js/'))
 }
 gulp.task('allJS', gulpJS);
