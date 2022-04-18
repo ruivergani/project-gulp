@@ -19,6 +19,15 @@ function compilaSass(){
 }
 gulp.task('sass', compilaSass); // task (need a name)  default for all execute
 
+// Concat all plugins CSS
+function pluginsCSS(){
+    return gulp.src('css/lib/*.css')
+    .pipe(concat('plugins.css'))
+    .pipe(gulp.dest('css/'))
+    .pipe(browserSync.stream())
+}
+gulp.task('plugincss', pluginsCSS);
+
 // Concat Function
 function gulpJS(){
     return gulp.src('js/scripts/*.js')
@@ -32,6 +41,7 @@ function gulpJS(){
 }
 gulp.task('allJS', gulpJS);
 
+// Concat Function
 function pluginsJS(){
     return gulp
     .src(['./js/lib/aos.min.js', './js/lib/swiper.min.js']) // name of files
@@ -54,6 +64,7 @@ gulp.task('browser-sync', browser);
 // Watch Function
 function watch(){
     gulp.watch('scss/*.scss', compilaSass); // gulp.series('name-of-task') or use parrallel
+    gulp.watch('css/lib/*.css', pluginsCSS);
     gulp.watch('*.html').on('change', browserSync.reload); // refresh html when changes made
     gulp.watch('js/scripts/*.js', gulpJS);
     gulp.watch('js/lib/*.js', pluginsJS);
@@ -61,4 +72,4 @@ function watch(){
 gulp.task('watch', watch);
 
 // Gulp default
-gulp.task('default', gulp.parallel('watch', 'browser-sync', 'sass', 'allJS', 'pluginjs'));
+gulp.task('default', gulp.parallel('watch', 'browser-sync', 'sass','plugincss', 'allJS', 'pluginjs'));
