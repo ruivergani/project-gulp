@@ -3,5 +3,5 @@
 }
 
 {
-    console.log('modal teste');
+    console.log('modal');
 }
