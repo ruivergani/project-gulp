@@ -29,6 +29,7 @@ function gulpJS(){
     }))
     .pipe(uglify())
     .pipe(gulp.dest('js/'))
+    .pipe(browserSync.stream()); // inject js into the page
 }
 gulp.task('allJS', gulpJS);
 
