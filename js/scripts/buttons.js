@@ -1,1 +1,3 @@
-console.log('buttons');
+{
+    console.log('buttons');
+}
