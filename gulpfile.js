@@ -3,6 +3,7 @@ const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync').create(); // create local server
 const concat = require('gulp-concat');
+const babel = require('gulp-babel');
 
 
 // Compile Sass Function
